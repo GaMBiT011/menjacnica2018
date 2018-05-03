@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
 
 import menjacnica.Valuta;
+import menjacnica.gui.kontroler.GUIKontroler;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -228,9 +229,9 @@ public class ObrisiKursGUI extends JFrame {
 
 	private void obrisiValutu() {
 		try{
-			glavniProzor.sistem.obrisiValutu(valuta);
+			GUIKontroler.sistem.obrisiValutu(valuta);
 			
-			glavniProzor.prikaziSveValute();
+			GUIKontroler.prikaziSveValute();
 			dispose();
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(contentPane, e1.getMessage(),
