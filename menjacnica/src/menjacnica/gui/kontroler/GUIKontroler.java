@@ -9,6 +9,7 @@ import javax.swing.JTable;
 
 import menjacnica.Menjacnica;
 import menjacnica.MenjacnicaInterface;
+import menjacnica.Valuta;
 import menjacnica.gui.DodajKursGUI;
 import menjacnica.gui.IzvrsiZamenuGUI;
 import menjacnica.gui.MenjacnicaGUI;
@@ -106,6 +107,30 @@ public class GUIKontroler {
 					model.vratiValutu(table.getSelectedRow()));
 			prozor.setLocationRelativeTo(gp.getContentPane());
 			prozor.setVisible(true);
+		}
+	}
+	public static void unesiKurs(String naziv,String skraceniNaziv,int sifra,double prodajniKurs,double kupovniKurs,double srednjiKurs) {
+		try {
+			Valuta valuta = new Valuta();
+
+			// Punjenje podataka o valuti
+			valuta.setNaziv(naziv);
+			valuta.setSkraceniNaziv(skraceniNaziv);
+			valuta.setSifra(sifra);
+			valuta.setProdajni(prodajniKurs);
+			valuta.setKupovni(kupovniKurs);
+			valuta.setSrednji(srednjiKurs);
+			
+			// Dodavanje valute u kursnu listu
+			GUIKontroler.sistem.dodajValutu(valuta);
+
+			// Osvezavanje glavnog prozora
+			GUIKontroler.prikaziSveValute();
+			
+			//Zatvaranje DodajValutuGUI prozora
+		} catch (Exception e1) {
+			JOptionPane.showMessageDialog(gp.getContentPane(), e1.getMessage(),
+					"Greska", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
